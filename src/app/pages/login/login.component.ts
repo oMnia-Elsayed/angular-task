@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -9,14 +9,15 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent { 
   
+  /** loginForm */
   public loginForm: FormGroup;
 
   /**
    * constructor
    * @param formBuilder 
-   * @param router
+   * @param userService
    */
-  constructor(private formBuilder: FormBuilder, private router: Router) {}
+  constructor(private formBuilder: FormBuilder, private userService: UserService) {}
 
   /**
    * ngOnInit
@@ -41,7 +42,7 @@ export class LoginComponent {
    */
   public login() {
     if (this.loginForm.valid) {
-      this.router.navigate(["/dashboard"]);
+      this.userService.login(this.loginForm);
     }
   }
 

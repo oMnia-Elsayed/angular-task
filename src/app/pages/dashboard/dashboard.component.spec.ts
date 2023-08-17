@@ -3,6 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { DasboardComponent } from './dashboard.component';
+import { ProductService } from 'src/app/services/product.service';
 
 describe('DasboardComponent', () => {
 
@@ -12,9 +13,16 @@ describe('DasboardComponent', () => {
 
     let router: Router;
 
+    let productService: ProductService;
+
     class MockedRouter {
         /** navigate */
         public navigate = () => {}
+    }
+
+    class MockedProductService {
+        /** getAllProducts */
+        public getAllProducts = () => [];
     }
 
     beforeEach(() => {
@@ -26,6 +34,7 @@ describe('DasboardComponent', () => {
             schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
             providers: [
                 { provide: Router, useClass: MockedRouter },
+                { provide: ProductService, useClass: MockedProductService },
             ],
         });
         TestBed.compileComponents();
@@ -35,12 +44,40 @@ describe('DasboardComponent', () => {
         fixture = TestBed.createComponent(DasboardComponent);
         component = fixture.debugElement.componentInstance;
         router = TestBed.inject(Router);
+        productService = TestBed.inject(ProductService);
     }));
 
     it('should create component', () => {
         expect(component).toBeTruthy();
     });
 
+    it('check ngOnInit function works fine', () => {
+
+        spyOn(component, 'getAllProducts');
+
+        component.ngOnInit();
+
+        expect(component.getAllProducts).toHaveBeenCalled();
+    });
+
+    it('check getAllProducts function works fine', async() => {
+
+        spyOn(productService, 'getAllProducts').and.callThrough();
+        productService.productsModel = [{
+            category: "men's clothing",
+            description: "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+            id: 1,
+            image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+            price: 109.95,
+            rating: {rate: 3.9, count: 120},
+            title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+        }]
+
+        await component.getAllProducts();
+
+        expect(productService.getAllProducts).toHaveBeenCalled();
+        expect(component?.products?.length).toEqual(1);
+    });
 
     it('check logout function works fine', () => {
 

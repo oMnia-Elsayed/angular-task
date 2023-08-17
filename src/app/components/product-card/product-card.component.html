@@ -1,0 +1,15 @@
+<mat-card class="example-card">
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title class="example-card--title">{{ productItem.title || 'Product title' }}</mat-card-title>
+        <mat-card-subtitle>{{ productItem.category || 'Product Category' }}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image class="example-card--img" src="{{productItem.image || ''}}" alt="Photo of a product">
+    <mat-card-content>
+        <p class="example-card--desc">{{ productItem.description || 'Product Description' }} </p>
+        <p><strong>Price: </strong>{{ productItem.price || 'Product Price' }}</p>
+        <p><strong>Rate: </strong>{{ productItem.rating?.rate || 0 }}</p>
+    </mat-card-content>
+    <div>
+    </div>
+</mat-card>

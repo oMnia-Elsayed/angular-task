@@ -9,3 +9,12 @@
     </mat-toolbar>
 </p>
   
+<div *ngIf="!isAdmin">
+    <mat-grid-list cols="3" rowHeight="1:1">
+        <mat-grid-tile *ngFor="let item of products">
+            <app-product-card [productItem]="item"></app-product-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
+
+<div *ngIf="isAdmin"></div>
