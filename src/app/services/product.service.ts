@@ -80,10 +80,22 @@ export class ProductService {
      * @param id: number
      */
     public async deleteProduct(id: number) {
-        fetch(`https://fakestoreapi.com/products/${id}`,{
+        await fetch(`https://fakestoreapi.com/products/${id}`,{
             method:"DELETE"
         })
         .then(res=>res.json())
         .then(json=>json)
+    }
+
+    /**
+     * addProduct
+     * @param product: ProductModel
+     */
+    public async addProduct(product: ProductModel) {
+        await fetch('https://fakestoreapi.com/products',{
+            method:"POST",
+            body:JSON.stringify(product)
+        })
+        .then(res=>res.json())
     }
 }

@@ -6,13 +6,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { ProductService } from 'src/app/services/product.service';
 import { NgIf } from '@angular/common';
 import { InfoComponent } from '../info/info.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { AddEditProductComponent } from '../add-edit-product/add-edit-product.component';
 
 @Component({
   selector: 'app-products-table',
   templateUrl: './products-table.component.html',
   styleUrls: ['./products-table.component.scss'],
   standalone: true,
-  imports: [MatTableModule, MatPaginatorModule, MatIconModule, NgIf, InfoComponent],
+  imports: [MatTableModule, MatPaginatorModule, MatIconModule, NgIf, InfoComponent, MatDialogModule, AddEditProductComponent],
 })
 export class ProductsTableComponent {
 
@@ -27,8 +29,12 @@ export class ProductsTableComponent {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-
-  constructor(private productService: ProductService) {}
+  /**
+   * constructor
+   * @param productService 
+   * @param dialog 
+   */
+  constructor(private productService: ProductService, public dialog: MatDialog) {}
 
   /**
    * ngOnInit
@@ -37,6 +43,9 @@ export class ProductsTableComponent {
     this.dataSource = new MatTableDataSource<any>(this.products);
   }
 
+  /**
+   * ngAfterViewInit
+   */
   public ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
@@ -45,8 +54,23 @@ export class ProductsTableComponent {
    * addProduct
    */
   public addProduct() {
-    console.log('******************');
+    const dialogRef = this.dialog.open(AddEditProductComponent, {
+      data: this.products
+    });
 
+    dialogRef.afterClosed().subscribe((product) => {
+
+      this.productService.addProduct(product).then(() => {
+
+        product.id = this.products.length + 1;
+        
+        this.products.push(product);
+        
+        this.dataSource.data = this.products;
+
+      });
+  
+    });
   }
 
   /**
@@ -54,11 +78,11 @@ export class ProductsTableComponent {
    */
   public editProduct() {
     console.log('******************');
-
   }
 
   /**
    * deleteProduct
+   * @param id: number
    */
   public async deleteProduct(id: number) {
 
