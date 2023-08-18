@@ -37,6 +37,7 @@ export class DasboardComponent {
    */
   public async getAllProducts() {
     await this.productService.getAllProducts();
+    await this.productService.getAllCategories();
     this.products = this.productService.productsModel;
     this.categories = this.productService.categories;
   }

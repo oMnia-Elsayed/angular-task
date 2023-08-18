@@ -64,8 +64,8 @@ export class SearchComponent implements OnInit {
     /**
      * filter
      */
-    public filter(category: string) {
-        this.productService.productsModel = this.cloneProducts.filter(el => el.category === category); 
+    public async filter(category: string) {
+        await this.productService.getSpecificCategory(category);        
         this.filteredProducts.emit(this.productService.productsModel);
     }
 

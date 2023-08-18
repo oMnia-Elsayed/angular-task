@@ -7,6 +7,8 @@ import { ProductCardComponent } from 'src/app/components/product-card/product-ca
 import { MatGridListModule } from '@angular/material/grid-list';
 import { SearchComponent } from 'src/app/components/search/search.component';
 import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
+import { ProductsTableComponent } from 'src/app/components/products-table/products-table.component';
+import { InfoComponent } from 'src/app/components/info/info.component';
 
 @NgModule({
   declarations: [DasboardComponent],
@@ -17,6 +19,8 @@ import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
     MatGridListModule,
     SearchComponent,
     NavbarComponent,
+    ProductsTableComponent,
+    InfoComponent,
   ]
 })
 export class DashboardModule { }
