@@ -1,0 +1,13 @@
+<form class="example-form">
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Search Product</mat-label>
+        <input value="{{searchText}}" matInput (input)="search($event)">
+    </mat-form-field>
+
+    <div class="example-button-row">
+        <button mat-raised-button color="primary" *ngFor="let category of categories" (click)="filter(category)"> {{category}} </button>
+        <button mat-raised-button color="primary" (click)="reset()"> Reset Filters </button>
+    </div>
+
+</form>

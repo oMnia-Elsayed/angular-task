@@ -1,7 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA} from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
-import { Router } from '@angular/router';
 import { DasboardComponent } from './dashboard.component';
 import { ProductService } from 'src/app/services/product.service';
 
@@ -11,14 +10,7 @@ describe('DasboardComponent', () => {
 
     let fixture: ComponentFixture<DasboardComponent>;
 
-    let router: Router;
-
     let productService: ProductService;
-
-    class MockedRouter {
-        /** navigate */
-        public navigate = () => {}
-    }
 
     class MockedProductService {
         /** getAllProducts */
@@ -33,7 +25,6 @@ describe('DasboardComponent', () => {
             ],
             schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
             providers: [
-                { provide: Router, useClass: MockedRouter },
                 { provide: ProductService, useClass: MockedProductService },
             ],
         });
@@ -43,7 +34,6 @@ describe('DasboardComponent', () => {
     beforeEach(async(() => {
         fixture = TestBed.createComponent(DasboardComponent);
         component = fixture.debugElement.componentInstance;
-        router = TestBed.inject(Router);
         productService = TestBed.inject(ProductService);
     }));
 
@@ -79,13 +69,21 @@ describe('DasboardComponent', () => {
         expect(component?.products?.length).toEqual(1);
     });
 
-    it('check logout function works fine', () => {
+    it('check getFilteredProducts function works fine', () => {
 
-        spyOn(router, 'navigate');
+        const data = [{
+            category: "men's clothing",
+            description: "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+            id: 1,
+            image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+            price: 109.95,
+            rating: {rate: 3.9, count: 120},
+            title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+        }]
 
-        component.logout();
+        component.getFilteredProducts(data);
 
-        expect(router.navigate).toHaveBeenCalled();
+        expect(component?.products?.length).toEqual(1);
     });
 
 });

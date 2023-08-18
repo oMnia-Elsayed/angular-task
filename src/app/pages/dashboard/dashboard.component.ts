@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { ProductModel } from 'src/app/models/product.model';
 import { ProductService } from 'src/app/services/product.service';
 
@@ -16,18 +15,20 @@ export class DasboardComponent {
   /** prducts */
   public products: ProductModel[];
 
+  /** categories */
+  public categories: string[];
+
   /**
    * constructor
-   * @param router 
    * @param productService
    */
-  constructor(private router: Router, private productService: ProductService) { }
+  constructor(private productService: ProductService) { }
 
   /**
    * ngOnInit
    */
   public ngOnInit() {
-    this.isAdmin = localStorage.getItem("isAdmin") === "true" ;
+    this.isAdmin = localStorage.getItem("isAdmin") === "true";
     this.getAllProducts();
   }
 
@@ -37,13 +38,15 @@ export class DasboardComponent {
   public async getAllProducts() {
     await this.productService.getAllProducts();
     this.products = this.productService.productsModel;
+    this.categories = this.productService.categories;
   }
 
   /**
-   * logout
+   * getFilteredProducts
+   * @param filteredProducts: ProductModel[]
    */
-  public logout() {
-    localStorage.removeItem("isAdmin");
-    this.router.navigate(["/login"]);
+  public getFilteredProducts(filteredProducts: ProductModel[]) {
+    this.products = filteredProducts;
   }
+
 }

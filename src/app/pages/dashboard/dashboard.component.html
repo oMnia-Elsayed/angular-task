@@ -1,16 +1,9 @@
-  
-<p>
-    <mat-toolbar color="primary">
-        <mat-toolbar-row>
-            <span>Shopping Website</span>
-            <span class="example-spacer"></span>
-            <button mat-button (click)="logout()"> logout </button>
-        </mat-toolbar-row>
-    </mat-toolbar>
-</p>
-  
+<app-navbar></app-navbar>
+
+<app-search *ngIf="products?.length" [products]="products" [categories]="categories" (filteredProducts)="getFilteredProducts($event)" ></app-search>
+
 <div *ngIf="!isAdmin">
-    <mat-grid-list cols="3" rowHeight="1:1">
+    <mat-grid-list cols="3" rowHeight="1:1" *ngIf="products?.length">
         <mat-grid-tile *ngFor="let item of products">
             <app-product-card [productItem]="item"></app-product-card>
         </mat-grid-tile>

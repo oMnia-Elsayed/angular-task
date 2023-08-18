@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { ProductModel } from "../models/product.model";
+import { uniq } from 'lodash';
 
 /** ProductService */
 @Injectable({
@@ -8,6 +9,9 @@ import { ProductModel } from "../models/product.model";
 export class ProductService {
     /** productsModel */
     public productsModel: ProductModel[];
+
+    /** categories */
+    public categories: string[];
 
     constructor() { }
 
@@ -27,6 +31,7 @@ export class ProductService {
      */
     public mapProductsModel(data: any) {
         this.productsModel = [];
+        this.categories = [];
 
         Array.isArray(data) && data.forEach(el => {
             const mappedModel: ProductModel = {
@@ -40,6 +45,9 @@ export class ProductService {
             }
 
             this.productsModel.push(mappedModel);
+            this.categories.push(el.category);
+
+            this.categories = uniq(this.categories);
         });
 
     }
