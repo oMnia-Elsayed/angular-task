@@ -20,17 +20,12 @@ export class UserService {
     public login(loginForm: FormGroup) {
 
         const body = JSON.stringify({
-            username: "mor_2314",
-            password: "83r5^_",
+            username: loginForm.value.username,
+            password: loginForm.value.password,
         });
 
         fetch('https://fakestoreapi.com/auth/login', {
             method: "POST",
-            mode: "cors",
-            credentials: "same-origin",
-            headers: {
-                "Content-Type": "application/json",
-            },
             body
         })
             .then((res: any) => {
@@ -48,7 +43,6 @@ export class UserService {
                     throw error;
                 }
             })
-        // .then(json => console.log(json))
 
     }
 

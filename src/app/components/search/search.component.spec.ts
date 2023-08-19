@@ -14,6 +14,9 @@ describe('SearchComponent', () => {
     class MockedProductService {
         /** getAllProducts */
         public getAllProducts = () => [];
+
+        /** getSpecificCategory  */
+        public getSpecificCategory = () => {}
     }
 
     beforeEach(() => {
@@ -56,8 +59,9 @@ describe('SearchComponent', () => {
         expect(component.filteredProducts.emit).toHaveBeenCalled();
     });
 
-    it('check filter function', () => {
+    it('check filter function', async() => {
         spyOn(component.filteredProducts, 'emit');
+        spyOn(productService, 'getSpecificCategory').and.callThrough();
 
         component.cloneProducts = [{
             category: "men's clothing",
@@ -77,9 +81,9 @@ describe('SearchComponent', () => {
             title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
         }];
 
-        component.filter("women's clothing");
+        await component.filter("women's clothing");
 
-        expect(productService.productsModel.length).toEqual(1);
+        expect(productService.getSpecificCategory).toHaveBeenCalled();
         expect(component.filteredProducts.emit).toHaveBeenCalled();
     });
 

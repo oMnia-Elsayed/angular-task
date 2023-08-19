@@ -4,14 +4,14 @@
 			<form class="login" [formGroup]="loginForm" *ngIf="loginForm" (ngSubmit)="login()" novalidate>
 				<div class="login__field">
 					<i class="login__icon fas fa-user"></i>
-					<input formControlName="username" type="text" class="login__input" placeholder="User name">
+					<input formControlName="username" type="text" class="login__input" placeholder="User name" i18n>
 				</div>
 				<div class="login__field">
 					<i class="login__icon fas fa-lock"></i>
-					<input formControlName="password" type="password" class="login__input" placeholder="Password">
+					<input formControlName="password" type="password" class="login__input" placeholder="Password" i18n>
 				</div>
 				<button class="button login__submit">
-					<span class="button__text">Log In Now</span>
+					<span class="button__text" i18n>Log In Now</span>
 					<i class="button__icon fas fa-chevron-right"></i>
 				</button>				
 			</form>

@@ -3,22 +3,22 @@
 export interface ProductModel {
 
     /** id */
-    id: number;
+    id?: number;
 
     /** category */
-    category?: string;
+    category: string;
 
     /** description */
-    description?: string;
+    description: string;
 
     /** image */
-    image?: string;
+    image: string;
 
     /** price */
-    price?: number;
+    price: number;
 
     /** title */
-    title?: string;
+    title: string;
 
     /** rate */
     rating?: Rate;

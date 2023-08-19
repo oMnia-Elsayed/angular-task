@@ -18,13 +18,13 @@ import { NgFor } from '@angular/common';
 export class SearchComponent implements OnInit {
 
     /** products */
-    @Input() products: ProductModel[];
+    @Input({required:true}) products: ProductModel[];
 
     /** filteredProducts */
     @Output() filteredProducts = new EventEmitter<any>();
 
     /** categories */
-    @Input() categories: string[];
+    @Input({required:true}) categories: string[];
 
     /** searchText */
     public searchText = '';
@@ -64,8 +64,8 @@ export class SearchComponent implements OnInit {
     /**
      * filter
      */
-    public filter(category: string) {
-        this.productService.productsModel = this.cloneProducts.filter(el => el.category === category); 
+    public async filter(category: string) {
+        await this.productService.getSpecificCategory(category);        
         this.filteredProducts.emit(this.productService.productsModel);
     }
 

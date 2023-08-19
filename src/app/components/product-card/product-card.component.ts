@@ -17,17 +17,6 @@ import { ProductModel } from 'src/app/models/product.model';
 export class ProductCardComponent { 
   
   /** productItem */
-  @Input() public productItem: ProductModel;
-
-  /**
-   * constructor
-   */
-  constructor() {}
-
-  /**
-   * ngOnInit
-   */
-  public ngOnInit() {
-  }
+  @Input({required:true}) public productItem: ProductModel;
 
 }
