@@ -36,7 +36,7 @@
       <th mat-header-cell *matHeaderCellDef> Actions </th>
       <td mat-cell *matCellDef="let element">
         <mat-icon aria-hidden="false" aria-label="Example add icon" fontIcon="add" (click)="addProduct()"></mat-icon>
-        <mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit" (click)="editProduct()"></mat-icon>
+        <mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit" (click)="editProduct(element)"></mat-icon>
         <mat-icon aria-hidden="false" aria-label="Example delete icon" fontIcon="delete" (click)="deleteProduct(element.id)"></mat-icon>
       </td>
     </ng-container>

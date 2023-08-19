@@ -15,6 +15,9 @@ describe('DasboardComponent', () => {
     class MockedProductService {
         /** getAllProducts */
         public getAllProducts = () => [];
+
+        /** getAllCategories  */
+        public getAllCategories  = () => []
     }
 
     beforeEach(() => {

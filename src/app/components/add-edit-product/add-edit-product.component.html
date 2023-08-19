@@ -1,6 +1,9 @@
 
 <form class="add-edit" [formGroup]="addEditForm" *ngIf="addEditForm" novalidate>
-    <h3> Add Product </h3>
+
+    <h3 *ngIf="!isEdit"> Add Product </h3>
+    <h3 *ngIf="isEdit"> Edit Product </h3>
+
     <div class="add-edit__field">
         <input formControlName="title" type="text" class="add-edit__input" placeholder="Title Product">
     </div>
@@ -24,6 +27,6 @@
         <input formControlName="price" type="number" class="add-edit__input" placeholder="Product Price">
     </div>
     
-    <button mat-button [mat-dialog-close]="data" class="button add-edit__submit" (click)="submit()" cdkFocusInitial>Add</button>
+    <button mat-button [mat-dialog-close]="data" class="button add-edit__submit" (click)="submit()" cdkFocusInitial>{{isEdit ? 'Edit' : 'Add'}}</button>
     <button mat-button class="mat-mdc-button-touch-target button add-edit__submit" (click)="onNoClick()">Cancel</button>				
 </form>

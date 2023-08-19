@@ -6,13 +6,12 @@ import { ProductModel } from "../models/product.model";
     providedIn: 'root',
 })
 export class ProductService {
+    
     /** productsModel */
     public productsModel: ProductModel[];
 
     /** categories */
     public categories: string[];
-
-    constructor() { }
 
     /**
     * getAllProducts
@@ -94,6 +93,18 @@ export class ProductService {
     public async addProduct(product: ProductModel) {
         await fetch('https://fakestoreapi.com/products',{
             method:"POST",
+            body:JSON.stringify(product)
+        })
+        .then(res=>res.json())
+    }
+
+     /**
+     * editProduct
+     * @param product: ProductModel
+     */
+      public async editProduct(product: ProductModel) {
+        await fetch(`https://fakestoreapi.com/products/${product.id}`,{
+            method:"PUT",
             body:JSON.stringify(product)
         })
         .then(res=>res.json())

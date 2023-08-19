@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -17,13 +17,16 @@ import { ProductModel } from 'src/app/models/product.model';
   imports: [MatDialogModule, MatFormFieldModule, MatInputModule, FormsModule, 
     MatButtonModule, ReactiveFormsModule, NgIf, NgFor, MatSelectModule],
 })
-export class AddEditProductComponent {
+export class AddEditProductComponent  implements OnInit {
 
   /** addEdit */
   public addEditForm: FormGroup;
 
   /** categories */
   public categories: string[];
+
+  /** isEdit */
+  public isEdit: boolean;
 
   /**
    * constructor
@@ -40,6 +43,12 @@ export class AddEditProductComponent {
   public ngOnInit() {
     this.constructLoginForm();
     this.categories = this.productService.categories;
+
+    if(this.data) {
+      this.isEdit = true;
+      this.setFormValues();
+    }
+
   }
 
   /**
@@ -48,11 +57,13 @@ export class AddEditProductComponent {
   public constructLoginForm() {
 
     this.addEditForm = this.formBuilder.group({
+      id: [""],
       title: ["", [Validators.required]],
       description: ["", [Validators.required]],
       category: ["", [Validators.required]],
       image: ["", [Validators.required]],
       price: ["", [Validators.required]],
+      rating: [""],
     });
 
   }
@@ -70,21 +81,34 @@ export class AddEditProductComponent {
   public async submit() {
     
     if(this.addEditForm.valid) {
-      
-      const product: ProductModel = {
-        title: this.addEditForm.value.title,
-        description: this.addEditForm.value.description,
-        category: this.addEditForm.value.category,
-        image: this.addEditForm.value.image,
-        price: this.addEditForm.value.price,
-        rating: {
-          count: 0,
-          rate: 0,
+
+      if(this.isEdit) {
+        this.dialogRef.close(this.addEditForm.value);
+
+      } else {
+
+        const product: ProductModel = {
+          title: this.addEditForm.value.title,
+          description: this.addEditForm.value.description,
+          category: this.addEditForm.value.category,
+          image: this.addEditForm.value.image,
+          price: this.addEditForm.value.price,
+          rating: {
+            count: 0,
+            rate: 0,
+          }
         }
+        this.dialogRef.close(product);
       }
 
-      this.dialogRef.close(product);
     }
-    
   }
+
+  /**
+   * setFormValues
+   */
+  public setFormValues() {
+    this.addEditForm.patchValue(this.data);
+  }
+
 }

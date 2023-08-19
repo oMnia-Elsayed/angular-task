@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { ProductModel } from 'src/app/models/product.model';
@@ -16,10 +16,10 @@ import { AddEditProductComponent } from '../add-edit-product/add-edit-product.co
   standalone: true,
   imports: [MatTableModule, MatPaginatorModule, MatIconModule, NgIf, InfoComponent, MatDialogModule, AddEditProductComponent],
 })
-export class ProductsTableComponent {
+export class ProductsTableComponent  implements OnInit, AfterViewInit {
 
   /** products */
-  @Input() products: ProductModel[];
+  @Input({required:true}) products: ProductModel[];
 
   /** displayedColumns */
   public displayedColumns: string[] = ['id', 'title', 'category', 'rate', 'price', 'icons'];
@@ -54,13 +54,11 @@ export class ProductsTableComponent {
    * addProduct
    */
   public addProduct() {
-    const dialogRef = this.dialog.open(AddEditProductComponent, {
-      data: this.products
-    });
+    const dialogRef = this.dialog.open(AddEditProductComponent, {});
 
     dialogRef.afterClosed().subscribe((product) => {
 
-      this.productService.addProduct(product).then(() => {
+      product && this.productService.addProduct(product).then(() => {
 
         product.id = this.products.length + 1;
         
@@ -76,8 +74,24 @@ export class ProductsTableComponent {
   /**
    * editProduct
    */
-  public editProduct() {
-    console.log('******************');
+  public editProduct(element: ProductModel) {
+    const dialogRef = this.dialog.open(AddEditProductComponent, {
+      data: element
+    });
+
+    dialogRef.afterClosed().subscribe((product) => {
+
+      product && this.productService.editProduct(product).then(() => {
+
+        const index = this.products.findIndex(el => el.id === product.id);
+
+        this.products[index] = product;
+       
+        this.dataSource.data = this.products;
+
+      });
+  
+    });
   }
 
   /**
