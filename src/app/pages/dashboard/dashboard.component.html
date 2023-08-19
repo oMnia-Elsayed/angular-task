@@ -1,0 +1,20 @@
+
+<app-navbar></app-navbar>
+
+<div *ngIf="!isAdmin">
+    <app-search *ngIf="products?.length" [products]="products" [categories]="categories" (filteredProducts)="getFilteredProducts($event)" ></app-search>
+    <mat-grid-list cols="3" rowHeight="1:1" *ngIf="products?.length">
+        <mat-grid-tile *ngFor="let item of products">
+            <app-product-card [productItem]="item"></app-product-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+
+    <!-- in case there is no products -->
+    <div class="table-view" *ngIf="products?.length">
+        <app-info></app-info>
+    </div>
+</div>
+
+<div class="admin-view" *ngIf="isAdmin">
+    <app-products-table  *ngIf="products?.length" [products]="products"></app-products-table>
+</div>

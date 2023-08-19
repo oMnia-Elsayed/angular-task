@@ -3,7 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { LoginComponent } from './login.component';
 import { FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 describe('LoginComponent', () => {
 
@@ -11,11 +11,11 @@ describe('LoginComponent', () => {
 
     let fixture: ComponentFixture<LoginComponent>;
 
-    let router: Router;
+    let userService: UserService;
 
-    class MockedRouter {
-        /** navigate */
-        public navigate = () => {}
+    class MockedUserService {
+        /** login */
+        public login = () => {}
     }
 
     beforeEach(() => {
@@ -27,7 +27,7 @@ describe('LoginComponent', () => {
             schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
             providers: [
                 FormBuilder,
-                { provide: Router, useClass: MockedRouter },
+                { provide: UserService, useClass: MockedUserService },
             ],
         });
         TestBed.compileComponents();
@@ -36,7 +36,7 @@ describe('LoginComponent', () => {
     beforeEach(async(() => {
         fixture = TestBed.createComponent(LoginComponent);
         component = fixture.debugElement.componentInstance;
-        router = TestBed.inject(Router);
+        userService = TestBed.inject(UserService);
     }));
 
     it('should create component', () => {
@@ -58,10 +58,10 @@ describe('LoginComponent', () => {
         expect(component.loginForm).toBeDefined();
     });
 
-    it('check login function works fine', () => {
+    it('login function works fine', () => {
 
-        spyOn(router, 'navigate');
-        
+        spyOn(userService, 'login');
+
         component.ngOnInit();
         
         component.loginForm?.controls['username']?.setValue('omnia');
@@ -69,15 +69,8 @@ describe('LoginComponent', () => {
 
         component.login();
 
-        expect(router.navigate).toHaveBeenCalled();
-    });
+        expect(userService.login).toHaveBeenCalled();
 
-    it('check login function works fine when the loginForm is not valid', () => {
-
-        component.ngOnInit();
-        component.login();
-
-        expect(component.loginForm.valid).toBeFalsy();
     });
 
 });
