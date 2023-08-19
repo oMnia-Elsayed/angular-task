@@ -5,7 +5,6 @@ import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/materia
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ProductService } from 'src/app/services/product.service';
-import { async } from 'rxjs';
 
 describe('AddEditProductComponent', () => {
   let component: AddEditProductComponent;
@@ -89,12 +88,20 @@ describe('AddEditProductComponent', () => {
     expect(matDialogRef.close).toHaveBeenCalled();
   });
 
-  xit('check onNoClick function works fine', async() => {
+  it('check onNoClick function works fine', async() => {
 
     spyOn(matDialogRef, 'close');
 
     component.ngOnInit();
     component.constructLoginForm();
+
+    component.addEditForm?.controls['id']?.setValue(1);
+    component.addEditForm?.controls['title']?.setValue('test');
+    component.addEditForm?.controls['description']?.setValue('test');
+    component.addEditForm?.controls['category']?.setValue('test');
+    component.addEditForm?.controls['image']?.setValue('test');
+    component.addEditForm?.controls['price']?.setValue(5);
+
     await component.submit();
 
     expect(matDialogRef.close).toHaveBeenCalled();
