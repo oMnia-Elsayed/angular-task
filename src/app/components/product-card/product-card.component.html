@@ -7,8 +7,8 @@
     <img mat-card-image class="example-card--img" src="{{productItem.image || ''}}" alt="Photo of a product">
     <mat-card-content>
         <p class="example-card--desc">{{ productItem.description || 'Product Description' }} </p>
-        <p><strong>Price: </strong>{{ productItem.price || 'Product Price' }}</p>
-        <p><strong>Rate: </strong>{{ productItem.rating?.rate || 0 }}</p>
+        <p><strong i18n>Price: </strong>{{ productItem.price || 'Product Price' }}</p>
+        <p><strong i18n>Rate: </strong>{{ productItem.rating?.rate || 0 }}</p>
     </mat-card-content>
     <div>
     </div>
