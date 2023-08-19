@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="6855267107038884229" datatype="html">
+        <source> Add Product </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/add-edit-product/add-edit-product.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3043120718583805160" datatype="html">
+        <source> Edit Product </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/add-edit-product/add-edit-product.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8535525394423824865" datatype="html">
+        <source>Product Category</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/add-edit-product/add-edit-product.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7708270344948043036" datatype="html">
+        <source> <x id="INTERPOLATION" equiv-text="{{category}}"/> </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/add-edit-product/add-edit-product.component.html</context>
+          <context context-type="linenumber">17,19</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/search/search.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3249513483374643425" datatype="html">
+        <source>Add</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/add-edit-product/add-edit-product.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7585826646011739428" datatype="html">
+        <source>Edit</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/add-edit-product/add-edit-product.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2159130950882492111" datatype="html">
+        <source>Cancel</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/add-edit-product/add-edit-product.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2581258808103531598" datatype="html">
+        <source>There is no products to show !!!</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/info/info.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3703628817306098031" datatype="html">
+        <source>Shopping Website</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/navbar/navbar.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3614914631874715715" datatype="html">
+        <source> logout </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/navbar/navbar.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2502388485848434957" datatype="html">
+        <source>Price: </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product-card/product-card.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7675756393826535280" datatype="html">
+        <source>Rate: </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product-card/product-card.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1488566043032617704" datatype="html">
+        <source> No. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/products-table/products-table.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9053645969247364433" datatype="html">
+        <source> Title </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/products-table/products-table.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5186038954367142316" datatype="html">
+        <source> Category </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/products-table/products-table.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8338805451624200208" datatype="html">
+        <source> Rate </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/products-table/products-table.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="762228006079275636" datatype="html">
+        <source> Price </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/products-table/products-table.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4360239040231802726" datatype="html">
+        <source> Actions </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/products-table/products-table.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2581351963442658096" datatype="html">
+        <source>Search Product</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/search/search.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6978234364807213493" datatype="html">
+        <source> Reset Filters </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/search/search.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

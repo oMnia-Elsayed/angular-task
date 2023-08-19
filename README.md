@@ -1,6 +1,8 @@
-# Shopping Website
+# ShoppingWebsite
 
- This is the template for a basic e-commerce store web app that will facilitate shopping experience.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0.
+
+This is the template for a basic e-commerce store web app that will facilitate shopping experience.
 
  ## Getting application
 
