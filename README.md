@@ -14,7 +14,7 @@ To get started developing right away:
 
 3- Open the terminal of Visual studio code .
 
-4- Write this command " cd shopping-website " .
+4- Write this command " cd angular-task " .
 
 5- Then write this command " npm install " .
 
