@@ -1,0 +1,55 @@
+<div class="mat-elevation-z8" *ngIf="dataSource?.filteredData?.length">
+  <table mat-table [dataSource]="dataSource">
+
+    <!-- Id Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef i18n> No. </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <!-- Title Column -->
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef i18n> Title </th>
+      <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+    </ng-container>
+
+    <!-- Category Column -->
+    <ng-container matColumnDef="category">
+      <th mat-header-cell *matHeaderCellDef i18n> Category </th>
+      <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+    </ng-container>
+
+    <!-- Rate Column -->
+    <ng-container matColumnDef="rate">
+      <th mat-header-cell *matHeaderCellDef i18n> Rate </th>
+      <td mat-cell *matCellDef="let element"> {{element.rating?.rate}} </td>
+    </ng-container>
+
+    <!-- Price Column -->
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef i18n> Price </th>
+      <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="icons">
+      <th mat-header-cell *matHeaderCellDef i18n> Actions </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon aria-hidden="false" aria-label="Example add icon" fontIcon="add" (click)="addProduct()"></mat-icon>
+        <mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit" (click)="editProduct(element)"></mat-icon>
+        <mat-icon aria-hidden="false" aria-label="Example delete icon" fontIcon="delete" (click)="deleteProduct(element.id)"></mat-icon>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+  </mat-paginator>
+</div>
+
+<!-- in case there is no products -->
+<div class="table-view" *ngIf="!dataSource?.filteredData?.length">
+  <app-info></app-info>
+</div>

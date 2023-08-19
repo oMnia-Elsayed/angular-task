@@ -1,0 +1,30 @@
+.example-card {
+    width: 350px;
+    height: 410px;
+    &--img {
+        width: 50%;
+        height: 40%;
+        margin: 0 auto;
+        padding: 10px;
+    }
+    &--title {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+    }
+    &--desc {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+    }
+}
+
+.example-header-image {
+    background-image: url('https://icon-library.com/images/categories-icon/categories-icon-1.jpg');
+    background-size: cover;
+}
+
