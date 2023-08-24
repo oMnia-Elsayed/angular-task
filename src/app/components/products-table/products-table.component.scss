@@ -1,9 +1,15 @@
 table {
     width: 100%;
+    padding: 15px;
+    th {
+		color: #4C489D;
+    }
 }
   
 .mat-icon {
     padding: 5px;
+    color: #4C489D;
+    cursor: pointer;
 }
 
 .table-view {

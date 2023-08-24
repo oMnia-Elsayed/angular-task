@@ -10,7 +10,7 @@
     </mat-grid-list>
 
     <!-- in case there is no products -->
-    <div class="table-view" *ngIf="products?.length">
+    <div class="table-view" *ngIf="!products?.length">
         <app-info></app-info>
     </div>
 </div>

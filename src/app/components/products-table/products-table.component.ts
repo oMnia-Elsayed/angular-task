@@ -27,6 +27,7 @@ export class ProductsTableComponent  implements OnInit, AfterViewInit {
   /** dataSource */
   public dataSource: MatTableDataSource<ProductModel>;
 
+  /** paginator */
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   /**
@@ -53,13 +54,14 @@ export class ProductsTableComponent  implements OnInit, AfterViewInit {
   /**
    * addProduct
    */
-  public addProduct() {
+  public addProduct(): void {
     const dialogRef = this.dialog.open(AddEditProductComponent, {});
 
     dialogRef.afterClosed().subscribe((product) => {
 
-      product && this.productService.addProduct(product).then(() => {
+      product && this.productService.addProduct(product).subscribe(() => {
 
+        // for table No. 
         product.id = this.products.length + 1;
         
         this.products.push(product);
@@ -73,15 +75,16 @@ export class ProductsTableComponent  implements OnInit, AfterViewInit {
 
   /**
    * editProduct
+   * @param {ProductModel} element
    */
-  public editProduct(element: ProductModel) {
+  public editProduct(element: ProductModel): void {
     const dialogRef = this.dialog.open(AddEditProductComponent, {
       data: element
     });
 
     dialogRef.afterClosed().subscribe((product) => {
 
-      product && this.productService.editProduct(product).then(() => {
+      product && this.productService.editProduct(product).subscribe(() => {
 
         const index = this.products.findIndex(el => el.id === product.id);
 
@@ -96,11 +99,11 @@ export class ProductsTableComponent  implements OnInit, AfterViewInit {
 
   /**
    * deleteProduct
-   * @param id: number
+   * @param {number} id
    */
-  public async deleteProduct(id: number) {
+  public deleteProduct(id: number): void {
 
-    await this.productService.deleteProduct(id).then(() => {
+    this.productService.deleteProduct(id).subscribe(() => {
       this.products = this.products.filter(el => el.id !== id);
       this.dataSource.data = this.products;
     });

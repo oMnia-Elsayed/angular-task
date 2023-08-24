@@ -5,6 +5,7 @@ import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/materia
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ProductService } from 'src/app/services/product.service';
+import { of } from 'rxjs';
 
 describe('AddEditProductComponent', () => {
   let component: AddEditProductComponent;
@@ -19,10 +20,13 @@ describe('AddEditProductComponent', () => {
     public categories = [];
 
     /** getAllProducts */
-    public getAllProducts = () => [];
+    public getAllProducts = () => of([]);
 
     /** getSpecificCategory  */
-    public getSpecificCategory = () => { }
+    public getSpecificCategory = () => of({});
+
+    /** getAllCategories */
+    public getAllCategories = () => of({});
   }
 
   class MockedMatDialogRef {
@@ -88,7 +92,7 @@ describe('AddEditProductComponent', () => {
     expect(matDialogRef.close).toHaveBeenCalled();
   });
 
-  it('check onNoClick function works fine', async() => {
+  it('check onNoClick function works fine', () => {
 
     spyOn(matDialogRef, 'close');
 
@@ -102,7 +106,7 @@ describe('AddEditProductComponent', () => {
     component.addEditForm?.controls['image']?.setValue('test');
     component.addEditForm?.controls['price']?.setValue(5);
 
-    await component.submit();
+    component.submit();
 
     expect(matDialogRef.close).toHaveBeenCalled();
   });

@@ -33,6 +33,7 @@ export class AddEditProductComponent  implements OnInit {
    * @param dialogRef 
    * @param formBuilder 
    * @param productService 
+   * @param data
    */
   constructor(public dialogRef: MatDialogRef<AddEditProductComponent>, private formBuilder: FormBuilder, 
     private productService: ProductService, @Inject(MAT_DIALOG_DATA) public data: ProductModel[]) {}
@@ -42,7 +43,9 @@ export class AddEditProductComponent  implements OnInit {
    */
   public ngOnInit() {
     this.constructLoginForm();
-    this.categories = this.productService.categories;
+    this.productService.getAllCategories().subscribe(res => {
+      this.categories = res;
+    });
 
     if(this.data) {
       this.isEdit = true;
@@ -78,7 +81,7 @@ export class AddEditProductComponent  implements OnInit {
   /**
    * submit
    */
-  public async submit() {
+  public submit() {
     
     if(this.addEditForm.valid) {
 

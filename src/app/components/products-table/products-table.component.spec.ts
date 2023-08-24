@@ -32,13 +32,13 @@ describe('ProductsTableComponent', () => {
   class MockedProductService {
 
     /** addProduct */
-    public addProduct = () => new Promise((resolve) =>{});
+    public addProduct = () => of({});
 
     /** editProduct  */
-    public editProduct = () => new Promise((resolve) =>{});
+    public editProduct = () => of({});
 
     /** deleteProduct  */
-    public deleteProduct = () => new Promise((resolve) =>{});
+    public deleteProduct = () => of({});
   }
 
   beforeEach(() => {

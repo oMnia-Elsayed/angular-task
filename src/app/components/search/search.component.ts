@@ -21,7 +21,7 @@ export class SearchComponent implements OnInit {
     @Input({required:true}) products: ProductModel[];
 
     /** filteredProducts */
-    @Output() filteredProducts = new EventEmitter<any>();
+    @Output() filteredProducts = new EventEmitter<ProductModel[]>();
 
     /** categories */
     @Input({required:true}) categories: string[];
@@ -41,7 +41,7 @@ export class SearchComponent implements OnInit {
     /**
      * ngOnInit
      */
-    public ngOnInit() {
+    public ngOnInit(): void {
         this.cloneProducts = cloneDeep(this.products);
     }
 
@@ -49,32 +49,37 @@ export class SearchComponent implements OnInit {
      * search
      * @param event
      */
-    public search(event: any) {
-        this.searchText = event.target?.value;
+    public search(event: Event): void {
+
+        const input = event.target as HTMLInputElement;
+
+        this.searchText =  input?.value;
         
         if(!isEmpty(this.searchText)) {
-            this.productService.productsModel = this.cloneProducts?.filter(el => el.title?.toLowerCase().includes(this.searchText.toLowerCase()));
+            this.products = this.cloneProducts?.filter(el => el.title?.toLowerCase().includes(this.searchText.toLowerCase()));
         } else {
-            this.productService.productsModel = this.cloneProducts;
+            this.products = this.cloneProducts;
         }
 
-        this.filteredProducts.emit(this.productService.productsModel);
+        this.filteredProducts.emit(this.products);
     }
 
     /**
      * filter
+     * @param {string} category
      */
-    public async filter(category: string) {
-        await this.productService.getSpecificCategory(category);        
-        this.filteredProducts.emit(this.productService.productsModel);
+    public filter(category: string): void {
+        this.productService.getSpecificCategory(category).subscribe(res => {
+            this.filteredProducts.emit(res);
+        });        
     }
 
     /**
      * reset
      */
-    public reset() {
-        this.productService.productsModel = this.cloneProducts;    
-        this.filteredProducts.emit(this.productService.productsModel);
+    public reset(): void {
+        this.searchText = '';
+        this.filteredProducts.emit(this.cloneProducts);
     }
 
 }

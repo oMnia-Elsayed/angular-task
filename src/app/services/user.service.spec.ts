@@ -1,18 +1,19 @@
 import { TestBed, async } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { UserService } from './user.service';
-import { Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { of } from 'rxjs';
 
 describe('UserService', () => {
 
     let service: UserService;
 
-    let router: Router;
+    let http: HttpClient;
 
-    class MockedRouter {
-        /** navigate */
-        public navigate = () => {}
+    class MockedHttp {
+        /** post */
+        public post = () => of({});
     }
 
     beforeEach(async(() => {
@@ -21,12 +22,12 @@ describe('UserService', () => {
             schemas: [NO_ERRORS_SCHEMA],
             providers: [
                 UserService,
-                { provide: Router, useClass: MockedRouter },
+                { provide: HttpClient, useClass: MockedHttp },
             ],
         });
 
         service = TestBed.inject(UserService);
-        router = TestBed.inject(Router);
+        http = TestBed.inject(HttpClient);
     }));
 
     it('should be created', () => {
@@ -35,7 +36,7 @@ describe('UserService', () => {
 
     it('check login function works fine', () => {
 
-        spyOn(router, 'navigate');
+        spyOn(http, 'post').and.callThrough();
 
         const form = new FormBuilder().group({
             username: ["", [Validators.required]],
@@ -46,6 +47,8 @@ describe('UserService', () => {
        form?.controls['password']?.setValue('omnia');
 
         service.login(form);
+
+        expect(http.post).toHaveBeenCalled();
 
     });
 });

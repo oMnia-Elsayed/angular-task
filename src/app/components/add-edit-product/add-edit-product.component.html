@@ -10,7 +10,7 @@
     <div class="add-edit__field">
         <input formControlName="description" type="text" class="add-edit__input" placeholder="Description" i18n>
     </div>
-    <div class="add-edit__field" *ngIf="categories.length">
+    <div class="add-edit__field" *ngIf="categories?.length">
         <mat-form-field>
             <mat-label i18n>Product Category</mat-label>
             <mat-select formControlName="category">

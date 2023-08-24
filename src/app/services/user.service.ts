@@ -1,6 +1,7 @@
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { Router } from "@angular/router";
+import { catchError, map, Observable, throwError } from "rxjs";
 
 /** UserService */
 @Injectable({
@@ -10,40 +11,43 @@ export class UserService {
 
     /**
      * constructor
-     * @param router 
+     * @param http
      */
-    constructor(private router: Router) { };
+    constructor(private http: HttpClient) { };
 
     /**
      * login
+     * @param loginForm: FormGroup
+     * @returns observable: {token: string}
      */
-    public login(loginForm: FormGroup) {
+    public login(loginForm: FormGroup): Observable<{token: string} | any> {
+
+        const url = 'https://fakestoreapi.com/auth/login';
+        
+        // const body = JSON.stringify({
+        //     username: loginForm.value.username,
+        //     password: loginForm.value.password,
+        // });
 
         const body = JSON.stringify({
-            username: loginForm.value.username,
-            password: loginForm.value.password,
+            username: "mor_2314",
+            password: "83r5^_",
         });
+        
+        const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-        fetch('https://fakestoreapi.com/auth/login', {
-            method: "POST",
-            body
-        })
-            .then((res: any) => {
-                try {
-                    res.json();
-                    
-                    this.router.navigate(["/dashboard"]);
-                    if(loginForm.value.username.toLowerCase() === "admin") {
-                        localStorage.setItem("isAdmin", "true");
-                    } else {
-                        localStorage.setItem("isAdmin", "false");
-                    }
+        return this.http
+            .post(url, body, { headers: headers})
+            .pipe(
+                map((response) => {
 
-                } catch (error) {
-                    throw error;
-                }
-            })
-
+                    return response;
+                }),
+                catchError((error) => {
+    
+                    return throwError(error);
+                }),
+            );
     }
 
 }

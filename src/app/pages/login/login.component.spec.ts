@@ -4,6 +4,8 @@ import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { LoginComponent } from './login.component';
 import { FormBuilder } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
+import { of } from 'rxjs';
 
 describe('LoginComponent', () => {
 
@@ -13,9 +15,16 @@ describe('LoginComponent', () => {
 
     let userService: UserService;
 
+    let router: Router;
+
+    class MockedRouter {
+        /** navigate */
+        public navigate = () => {}
+    }
+
     class MockedUserService {
         /** login */
-        public login = () => {}
+        public login = () => of({});
     }
 
     beforeEach(() => {
@@ -28,6 +37,7 @@ describe('LoginComponent', () => {
             providers: [
                 FormBuilder,
                 { provide: UserService, useClass: MockedUserService },
+                { provide: Router, useClass: MockedRouter },
             ],
         });
         TestBed.compileComponents();
@@ -37,6 +47,7 @@ describe('LoginComponent', () => {
         fixture = TestBed.createComponent(LoginComponent);
         component = fixture.debugElement.componentInstance;
         userService = TestBed.inject(UserService);
+        router = TestBed.inject(Router);
     }));
 
     it('should create component', () => {
@@ -60,7 +71,8 @@ describe('LoginComponent', () => {
 
     it('login function works fine', () => {
 
-        spyOn(userService, 'login');
+        spyOn(userService, 'login').and.callThrough();
+        spyOn(router, 'navigate');
 
         component.ngOnInit();
         
@@ -70,6 +82,7 @@ describe('LoginComponent', () => {
         component.login();
 
         expect(userService.login).toHaveBeenCalled();
+        expect(router.navigate).toHaveBeenCalled();
 
     });
 

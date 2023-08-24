@@ -27,26 +27,35 @@ export class DasboardComponent {
   /**
    * ngOnInit
    */
-  public ngOnInit() {
-    this.isAdmin = localStorage.getItem("isAdmin") === "true";
+  public ngOnInit(): void {
+    this.isAdmin = localStorage.getItem("userRole") === "admin";
     this.getAllProducts();
+    !this.isAdmin && this.getAllCategories();
   }
 
   /**
    * getAllProducts
    */
-  public async getAllProducts() {
-    await this.productService.getAllProducts();
-    await this.productService.getAllCategories();
-    this.products = this.productService.productsModel;
-    this.categories = this.productService.categories;
+  public getAllProducts(): void {
+    this.productService.getAllProducts().subscribe(res => {
+      this.products = res;
+    });
+  }
+
+  /**
+   * getAllCategories
+   */
+  public getAllCategories(): void {
+    this.productService.getAllCategories().subscribe(res => {
+      this.categories = res as string[];
+    });
   }
 
   /**
    * getFilteredProducts
-   * @param filteredProducts: ProductModel[]
+   * @param {ProductModel[]} filteredProducts
    */
-  public getFilteredProducts(filteredProducts: ProductModel[]) {
+  public getFilteredProducts(filteredProducts: ProductModel[]): void {
     this.products = filteredProducts;
   }
 

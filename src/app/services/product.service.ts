@@ -1,4 +1,6 @@
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { catchError, map, Observable, throwError } from "rxjs";
 import { ProductModel } from "../models/product.model";
 
 /** ProductService */
@@ -6,29 +8,44 @@ import { ProductModel } from "../models/product.model";
     providedIn: 'root',
 })
 export class ProductService {
-    
-    /** productsModel */
-    public productsModel: ProductModel[];
-
-    /** categories */
-    public categories: string[];
 
     /**
-    * getAllProducts
-    */
-    public async getAllProducts() {
-        await fetch('https://fakestoreapi.com/products')
-            .then(res => res.json())
-            .then(data => data && this.mapProductsModel(data));
-    }
+     * constructor
+     * @param http 
+     */
+    constructor(private http: HttpClient) {}
 
+    /**
+     * getAllProducts
+     * @returns Observable<any>
+     */
+    public getAllProducts():Observable<any> {
+    
+        const url = 'https://fakestoreapi.com/products';
+        
+        const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+        return this.http
+            .get(url, { headers: headers})
+            .pipe(
+                map((response) => {
+
+                    return response && this.mapProductsModel(response as ProductModel[]);
+                }),
+                catchError((error) => {
+    
+                    return throwError(error);
+                }),
+            );
+    }
 
     /**
      * mapProductsModel
      * @param data
+     * @returns {ProductModel[]}
      */
-    public mapProductsModel(data: any) {
-        this.productsModel = [];
+    public mapProductsModel(data: ProductModel[]): ProductModel[] {
+        let productsModel: ProductModel[] = [];
 
         Array.isArray(data) && data.forEach(el => {
             const mappedModel: ProductModel = {
@@ -41,72 +58,138 @@ export class ProductService {
                 rating: { ...el?.rating }
             }
 
-            this.productsModel.push(mappedModel);
+            productsModel.push(mappedModel);
         });
 
+
+        return productsModel;
     }
 
     /**
-    * getAllCategories
-    */
-    public async getAllCategories() {
-
-        this.categories = [];
-
-        await fetch('https://fakestoreapi.com/products/categories')
-            .then(res => res.json())
-            .then(data => data && this.setCategories(data));
-    }
-
-    /**
-     * setCategories
+     * getAllCategories
+     * @returns Observable<any>
      */
-    public setCategories(data: any) {
-        this.categories = [...data];
+    public getAllCategories(): Observable<any> {
+
+        const url = 'https://fakestoreapi.com/products/categories';
+        
+        const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+        return this.http
+            .get(url, { headers: headers})
+            .pipe(
+                map((response) => {
+
+                    return response;
+                }),
+                catchError((error) => {
+    
+                    return throwError(error);
+                }),
+            );
     }
 
     /**
      * getSpecificCategory
+     * @param category: string
+     * @returns Observable<any>
      */
-    public async getSpecificCategory(category: string) {
-        await fetch(`https://fakestoreapi.com/products//category/${category}`)
-        .then(res => res.json())
-        .then(data => data && this.mapProductsModel(data));
+    public getSpecificCategory(category: string): Observable<any> {
+
+        const url = `https://fakestoreapi.com/products//category/${category}`;
+        
+        const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+        return this.http
+            .get(url, { headers: headers})
+            .pipe(
+                map((response) => {
+
+                    return response && this.mapProductsModel(response as ProductModel[]);
+                }),
+                catchError((error) => {
+    
+                    return throwError(error);
+                }),
+            );
     }
 
     /**
      * deleteProduct
      * @param id: number
+     * @returns Observable<any>
      */
-    public async deleteProduct(id: number) {
-        await fetch(`https://fakestoreapi.com/products/${id}`,{
-            method:"DELETE"
-        })
-        .then(res=>res.json())
-        .then(json=>json)
+    public deleteProduct(id: number): Observable<any> {
+       
+        const url = `https://fakestoreapi.com/products/${id}`;
+        
+        const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+        return this.http
+            .delete(url, { headers: headers})
+            .pipe(
+                map((response) => {
+
+                    return response;
+                }),
+                catchError((error) => {
+    
+                    return throwError(error);
+                }),
+            );
     }
 
     /**
      * addProduct
      * @param product: ProductModel
+     * @returns Observable<any>
      */
-    public async addProduct(product: ProductModel) {
-        await fetch('https://fakestoreapi.com/products',{
-            method:"POST",
-            body:JSON.stringify(product)
-        })
-        .then(res=>res.json())
+    public addProduct(product: ProductModel): Observable<any> {
+
+        const body = JSON.stringify(product);
+
+        const url = 'https://fakestoreapi.com/products';
+
+        const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+        return this.http
+            .post(url, body, { headers: headers})
+            .pipe(
+                map((response) => {
+
+                    return response;
+                }),
+                catchError((error) => {
+    
+                    return throwError(error);
+                }),
+            );
     }
 
      /**
      * editProduct
      * @param product: ProductModel
+     * @returns Observable<any>
      */
-      public async editProduct(product: ProductModel) {
-        await fetch(`https://fakestoreapi.com/products/${product.id}`,{
-            method:"PUT",
-            body:JSON.stringify(product)
-        })
-        .then(res=>res.json())
+      public editProduct(product: ProductModel): Observable<any> {
+
+        const body = JSON.stringify(product);
+
+        const url = `https://fakestoreapi.com/products/${product?.id}`;
+
+        const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+        return this.http
+            .put(url, body, { headers: headers})
+            .pipe(
+                map((response) => {
+
+                    return response;
+                }),
+                catchError((error) => {
+    
+                    return throwError(error);
+                }),
+            );
     }
 }

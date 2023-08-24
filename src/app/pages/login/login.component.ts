@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -16,8 +17,9 @@ export class LoginComponent {
    * constructor
    * @param formBuilder 
    * @param userService
+   * @param router
    */
-  constructor(private formBuilder: FormBuilder, private userService: UserService) {}
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router) {}
 
   /**
    * ngOnInit
@@ -39,10 +41,18 @@ export class LoginComponent {
 
   /**
    * login
+   * @returns void
    */
-  public login() {
+  public login(): void {
     if (this.loginForm.valid) {
-      this.userService.login(this.loginForm);
+      this.userService.login(this.loginForm).subscribe(() => {
+        if(this.loginForm.value.username.toLowerCase() === "admin") {
+          localStorage.setItem("userRole", "admin");
+        } else {
+          localStorage.setItem("userRole", "user");
+        }
+        this.router.navigate(["/dashboard"]);
+      });
     }
   }
 
