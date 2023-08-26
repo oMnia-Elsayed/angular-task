@@ -1,3 +1,18 @@
-.example-spacer {
-    flex: 1 1 auto;
+
+
+.navbar {
+    
+    &-icon {
+        color: white;
+        padding: 0;
+    }
+
+    &-example-spacer {
+        flex: 1 1 auto;
+    }
+    
+    button {
+        text-decoration: underline;
+        font-size: 16px;
+    }
 }

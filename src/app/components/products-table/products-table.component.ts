@@ -8,6 +8,7 @@ import { NgIf } from '@angular/common';
 import { InfoComponent } from '../info/info.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { AddEditProductComponent } from '../add-edit-product/add-edit-product.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-products-table',
@@ -34,8 +35,9 @@ export class ProductsTableComponent  implements OnInit, AfterViewInit {
    * constructor
    * @param productService 
    * @param dialog 
+   * @param toastr
    */
-  constructor(private productService: ProductService, public dialog: MatDialog) {}
+  constructor(private productService: ProductService, public dialog: MatDialog, private toastr: ToastrService) {}
 
   /**
    * ngOnInit
@@ -68,6 +70,11 @@ export class ProductsTableComponent  implements OnInit, AfterViewInit {
         
         this.dataSource.data = this.products;
 
+       this.toastr.success('The product item is added successfully', 'Add Product');
+
+      }, () => {
+
+        this.toastr.error('Something went wrong !!!', 'Add Product');
       });
   
     });
@@ -92,6 +99,11 @@ export class ProductsTableComponent  implements OnInit, AfterViewInit {
        
         this.dataSource.data = this.products;
 
+       this.toastr.success('The product item is updated successfully', 'Update Product');
+
+      }, () => {
+
+        this.toastr.error('Something went wrong !!!', 'Update Product');
       });
   
     });
@@ -106,6 +118,10 @@ export class ProductsTableComponent  implements OnInit, AfterViewInit {
     this.productService.deleteProduct(id).subscribe(() => {
       this.products = this.products.filter(el => el.id !== id);
       this.dataSource.data = this.products;
+      this.toastr.success('The product item is deleted successfully', 'Delete Product');
+    }, () => {
+
+      this.toastr.error('Something went wrong !!!', 'Delete Product');
     });
 
   }

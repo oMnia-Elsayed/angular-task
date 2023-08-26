@@ -27,7 +27,9 @@
         <input formControlName="price" type="number" class="add-edit__input" placeholder="Product Price" i18n>
     </div>
     
-    <button mat-button [mat-dialog-close]="data" class="button add-edit__submit" (click)="submit()" cdkFocusInitial i18n *ngIf="!isEdit">Add</button>
-    <button mat-button [mat-dialog-close]="data" class="button add-edit__submit" (click)="submit()" cdkFocusInitial i18n *ngIf="isEdit">Edit</button>
-    <button mat-button class="mat-mdc-button-touch-target button add-edit__submit" (click)="onNoClick()" i18n>Cancel</button>				
+    <div class="add-edit__submit">
+        <button mat-button [mat-dialog-close]="data" class="button" (click)="submit()" cdkFocusInitial i18n *ngIf="!isEdit">Add</button>
+        <button mat-button [mat-dialog-close]="data" class="button" (click)="submit()" cdkFocusInitial i18n *ngIf="isEdit">Edit</button>
+        <button mat-button class="mat-mdc-button-touch-target button" (click)="onNoClick()" i18n>Cancel</button>				
+    </div>
 </form>

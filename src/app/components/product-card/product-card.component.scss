@@ -1,6 +1,7 @@
 .example-card {
     width: 350px;
     height: 410px;
+    font-family: inherit;
     &--img {
         width: 50%;
         height: 40%;
@@ -21,10 +22,9 @@
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 3;
     }
-}
-
-.example-header-image {
-    background-image: url('https://icon-library.com/images/categories-icon/categories-icon-1.jpg');
-    background-size: cover;
+    &--info {
+        display: flex;
+        justify-content: space-between;
+    }
 }
 

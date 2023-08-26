@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-navbar',
@@ -11,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [
     MatToolbarModule,
     MatButtonModule,
+    MatIconModule,
   ]
 })
 export class NavbarComponent {
@@ -24,7 +26,7 @@ export class NavbarComponent {
   /**
   * logout
   */
-  public logout() {
+  public logout(): void {
     localStorage.removeItem("isAdmin");
     this.router.navigate(["/login"]);
   }

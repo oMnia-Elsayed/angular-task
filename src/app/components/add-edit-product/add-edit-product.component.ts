@@ -8,6 +8,7 @@ import { NgFor, NgIf } from '@angular/common';
 import { ProductService } from 'src/app/services/product.service';
 import { MatSelectModule } from '@angular/material/select';
 import { ProductModel } from 'src/app/models/product.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-edit-product',
@@ -34,17 +35,21 @@ export class AddEditProductComponent  implements OnInit {
    * @param formBuilder 
    * @param productService 
    * @param data
+   * @param toastr
    */
   constructor(public dialogRef: MatDialogRef<AddEditProductComponent>, private formBuilder: FormBuilder, 
-    private productService: ProductService, @Inject(MAT_DIALOG_DATA) public data: ProductModel[]) {}
+    private productService: ProductService, @Inject(MAT_DIALOG_DATA) public data: ProductModel[], private toastr: ToastrService) {}
 
   /**
    * ngOnInit
    */
-  public ngOnInit() {
+  public ngOnInit(): void {
     this.constructLoginForm();
     this.productService.getAllCategories().subscribe(res => {
       this.categories = res;
+    }, () => {
+
+      this.toastr.error('Something went wrong !!!', 'Get all categories');
     });
 
     if(this.data) {
@@ -57,7 +62,7 @@ export class AddEditProductComponent  implements OnInit {
   /**
    * constructLoginForm
    */
-  public constructLoginForm() {
+  public constructLoginForm(): void {
 
     this.addEditForm = this.formBuilder.group({
       id: [""],
@@ -81,7 +86,7 @@ export class AddEditProductComponent  implements OnInit {
   /**
    * submit
    */
-  public submit() {
+  public submit(): void {
     
     if(this.addEditForm.valid) {
 
@@ -110,7 +115,7 @@ export class AddEditProductComponent  implements OnInit {
   /**
    * setFormValues
    */
-  public setFormValues() {
+  public setFormValues(): void {
     this.addEditForm.patchValue(this.data);
   }
 

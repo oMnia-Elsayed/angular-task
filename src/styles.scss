@@ -35,5 +35,12 @@ $shopping-website-theme: mat.define-light-theme((
 
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html { height: 100%; }
+@import './app/app.component.scss';
+@import './app/pages/login/login.component.scss';
+@import './app/pages/dashboard/dashboard.component.scss';
+@import './app/components/add-edit-product/add-edit-product.component.scss';
+@import './app/components/navbar/navbar.component.scss';
+@import './app/components/product-card/product-card.component.scss';
+@import './app/components/products-table/products-table.component.scss';
+@import './app/components/search/search.component.scss';

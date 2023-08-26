@@ -6,6 +6,7 @@ import { FormBuilder } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
 import { of } from 'rxjs';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 
 describe('LoginComponent', () => {
 
@@ -29,13 +30,14 @@ describe('LoginComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [RouterTestingModule],
+            imports: [RouterTestingModule, ToastrModule.forRoot()],
             declarations: [
                 LoginComponent,
             ],
             schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
             providers: [
                 FormBuilder,
+                ToastrService,
                 { provide: UserService, useClass: MockedUserService },
                 { provide: Router, useClass: MockedRouter },
             ],

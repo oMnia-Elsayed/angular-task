@@ -35,7 +35,8 @@
             "inlineStyleLanguage": "scss",
             "assets": [],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": []
           },
@@ -101,7 +102,8 @@
             "inlineStyleLanguage": "scss",
             "assets": [],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": []
           }

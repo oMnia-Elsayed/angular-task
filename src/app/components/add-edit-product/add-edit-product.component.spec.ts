@@ -6,6 +6,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ProductService } from 'src/app/services/product.service';
 import { of } from 'rxjs';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 
 describe('AddEditProductComponent', () => {
   let component: AddEditProductComponent;
@@ -36,9 +37,10 @@ describe('AddEditProductComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [MatDialogModule],
+      imports: [MatDialogModule, ToastrModule.forRoot()],
       providers: [
         FormBuilder,
+        ToastrService,
         { provide: MatDialogRef, useClass: MockedMatDialogRef },
         { provide: MAT_DIALOG_DATA, useValue: [] },
         { provide: ProductService, useClass: MockedProductService },

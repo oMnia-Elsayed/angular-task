@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -18,8 +19,9 @@ export class LoginComponent {
    * @param formBuilder 
    * @param userService
    * @param router
+   * @param toastr
    */
-  constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router) {}
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router, private toastr: ToastrService) {}
 
   /**
    * ngOnInit
@@ -52,6 +54,9 @@ export class LoginComponent {
           localStorage.setItem("userRole", "user");
         }
         this.router.navigate(["/dashboard"]);
+      }, () => {
+
+        this.toastr.error('Something went wrong !!!', 'Login');
       });
     }
   }

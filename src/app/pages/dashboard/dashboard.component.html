@@ -3,7 +3,7 @@
 
 <div *ngIf="!isAdmin">
     <app-search *ngIf="products?.length" [products]="products" [categories]="categories" (filteredProducts)="getFilteredProducts($event)" ></app-search>
-    <mat-grid-list cols="3" rowHeight="1:1" *ngIf="products?.length">
+    <mat-grid-list cols="4" rowHeight="1:1.3" *ngIf="products?.length">
         <mat-grid-tile *ngFor="let item of products">
             <app-product-card [productItem]="item"></app-product-card>
         </mat-grid-tile>

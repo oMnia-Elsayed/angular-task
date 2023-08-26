@@ -7,6 +7,7 @@ import { ProductModel } from 'src/app/models/product.model';
 import { isEmpty, cloneDeep } from 'lodash';
 import { MatButtonModule } from '@angular/material/button';
 import { NgFor } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-search',
@@ -34,9 +35,10 @@ export class SearchComponent implements OnInit {
   
     /**
      * constructor
-     * @param productService 
+     * @param productService   
+     * @param toastr
      */
-    constructor(private productService: ProductService) {}
+    constructor(private productService: ProductService, private toastr: ToastrService) {}
 
     /**
      * ngOnInit
@@ -71,6 +73,9 @@ export class SearchComponent implements OnInit {
     public filter(category: string): void {
         this.productService.getSpecificCategory(category).subscribe(res => {
             this.filteredProducts.emit(res);
+        }, () => {
+
+            this.toastr.error('Something went wrong !!!', 'Filter by category');
         });        
     }
 

@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 import { ProductModel } from 'src/app/models/product.model';
 
 @Component({
@@ -12,6 +13,7 @@ import { ProductModel } from 'src/app/models/product.model';
   imports: [
     MatCardModule, 
     MatButtonModule,
+    MatIconModule,
   ],
 })
 export class ProductCardComponent { 

@@ -4,6 +4,7 @@ import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { DasboardComponent } from './dashboard.component';
 import { ProductService } from 'src/app/services/product.service';
 import { of } from 'rxjs';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 
 describe('DasboardComponent', () => {
 
@@ -23,12 +24,13 @@ describe('DasboardComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [RouterTestingModule],
+            imports: [RouterTestingModule, ToastrModule.forRoot()],
             declarations: [
                 DasboardComponent,
             ],
             schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
             providers: [
+                ToastrService,
                 { provide: ProductService, useClass: MockedProductService },
             ],
         });

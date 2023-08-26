@@ -1,26 +1,23 @@
+
 <div class="container">
-	<div class="screen">
-		<div class="screen__content">
-			<form class="login" [formGroup]="loginForm" *ngIf="loginForm" (ngSubmit)="login()" novalidate>
-				<div class="login__field">
-					<i class="login__icon fas fa-user"></i>
-					<input formControlName="username" type="text" class="login__input" placeholder="User name" i18n>
-				</div>
-				<div class="login__field">
-					<i class="login__icon fas fa-lock"></i>
-					<input formControlName="password" type="password" class="login__input" placeholder="Password" i18n>
-				</div>
-				<button class="button login__submit">
-					<span class="button__text" i18n>Log In Now</span>
-					<i class="button__icon fas fa-chevron-right"></i>
-				</button>				
+	<div class="form" id="form">
+		<div class="form-container">
+			<form [formGroup]="loginForm" *ngIf="loginForm" (ngSubmit)="login()" novalidate>
+				<h1>Log in</h1>
+				<span>Use your account Username and password </span>
+				<input type="text" placeholder="Username" formControlName="username"/>
+				<input type="password" placeholder="Password" formControlName="password" />
+				<button>log In</button>
 			</form>
 		</div>
-		<div class="screen__background">
-			<span class="screen__background__shape screen__background__shape4"></span>
-			<span class="screen__background__shape screen__background__shape3"></span>		
-			<span class="screen__background__shape screen__background__shape2"></span>
-			<span class="screen__background__shape screen__background__shape1"></span>
-		</div>		
+		<div class="form-overlay">
+			<div class="form-overlay-container">
+				<div class="form-overlay-panel form-overlay-right">
+					<h1>Hello, Friend!</h1>
+					<p>Enter your personal details and start journey with us</p>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
+

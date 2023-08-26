@@ -12,7 +12,8 @@
 .example-button-row {
     display: table-cell;
     button {
-        margin: 20px;
+        margin: 10px;
+        padding: 22px;
+        font-family: inherit;
     }
 }
-  

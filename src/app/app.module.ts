@@ -10,6 +10,8 @@ import { ProductService } from './services/product.service';
 import { UserService } from './services/user.service';
 import { HttpClientModule } from '@angular/common/http';
 
+import { ToastrModule } from 'ngx-toastr';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -21,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     LoginModule,
     DashboardModule,
+    ToastrModule.forRoot(),
   ],
   providers: [UserService, ProductService],
   bootstrap: [AppComponent]
