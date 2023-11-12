@@ -1,6 +1,6 @@
 
 <app-navbar></app-navbar>
-
+<ngx-skeleton-loader *ngIf="!products?.length"  count="1" appearance="circle"></ngx-skeleton-loader>
 <div *ngIf="!isAdmin">
     <app-search *ngIf="products?.length" [products]="products" [categories]="categories" (filteredProducts)="getFilteredProducts($event)" ></app-search>
     <mat-grid-list cols="4" rowHeight="1:1.3" *ngIf="products?.length">

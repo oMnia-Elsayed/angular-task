@@ -2,6 +2,8 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { catchError, map, Observable, throwError } from "rxjs";
 import { ProductModel } from "../models/product.model";
+import { PRODUCTS_URL, CATEGORIES_URL, DELETE_EDIT_PRODUCT_URL, SPECIFIC_CATEGORY_URL } from '../constants/api-defines';
+import { HelperService } from "./helper.service";
 
 /** ProductService */
 @Injectable({
@@ -12,21 +14,20 @@ export class ProductService {
     /**
      * constructor
      * @param http 
+     * @param helper
      */
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient, private helper: HelperService) {}
 
     /**
      * getAllProducts
      * @returns Observable<any>
      */
     public getAllProducts():Observable<any> {
-    
-        const url = 'https://fakestoreapi.com/products';
         
         const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
         return this.http
-            .get(url, { headers: headers})
+            .get(PRODUCTS_URL, { headers: headers})
             .pipe(
                 map((response) => {
 
@@ -71,12 +72,10 @@ export class ProductService {
      */
     public getAllCategories(): Observable<any> {
 
-        const url = 'https://fakestoreapi.com/products/categories';
-        
         const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
         return this.http
-            .get(url, { headers: headers})
+            .get(CATEGORIES_URL, { headers: headers})
             .pipe(
                 map((response) => {
 
@@ -96,8 +95,10 @@ export class ProductService {
      */
     public getSpecificCategory(category: string): Observable<any> {
 
-        const url = `https://fakestoreapi.com/products//category/${category}`;
+        let  url = SPECIFIC_CATEGORY_URL;
         
+        url = this.helper.prepareUrl(url, { category: category });
+                
         const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
         return this.http
@@ -121,8 +122,10 @@ export class ProductService {
      */
     public deleteProduct(id: number): Observable<any> {
        
-        const url = `https://fakestoreapi.com/products/${id}`;
+        let  url = DELETE_EDIT_PRODUCT_URL;
         
+        url = this.helper.prepareUrl(url, { id: id });
+
         const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
         return this.http
@@ -148,12 +151,10 @@ export class ProductService {
 
         const body = JSON.stringify(product);
 
-        const url = 'https://fakestoreapi.com/products';
-
         const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
         return this.http
-            .post(url, body, { headers: headers})
+            .post(PRODUCTS_URL, body, { headers: headers})
             .pipe(
                 map((response) => {
 
@@ -175,8 +176,10 @@ export class ProductService {
 
         const body = JSON.stringify(product);
 
-        const url = `https://fakestoreapi.com/products/${product?.id}`;
-
+        let  url = DELETE_EDIT_PRODUCT_URL;
+        
+        url = this.helper.prepareUrl(url, { id: product?.id });
+        
         const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
         return this.http

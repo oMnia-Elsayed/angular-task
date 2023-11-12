@@ -11,6 +11,7 @@ import { UserService } from './services/user.service';
 import { HttpClientModule } from '@angular/common/http';
 
 import { ToastrModule } from 'ngx-toastr';
+import { HelperService } from './services/helper.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { ToastrModule } from 'ngx-toastr';
     DashboardModule,
     ToastrModule.forRoot(),
   ],
-  providers: [UserService, ProductService],
+  providers: [UserService, ProductService, HelperService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

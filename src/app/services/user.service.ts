@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { catchError, map, Observable, throwError } from "rxjs";
+import { LOGIN_URL } from "../constants/api-defines";
 
 /** UserService */
 @Injectable({
@@ -22,8 +23,6 @@ export class UserService {
      */
     public login(loginForm: FormGroup): Observable<{token: string} | any> {
 
-        const url = 'https://fakestoreapi.com/auth/login';
-        
         // const body = JSON.stringify({
         //     username: loginForm.value.username,
         //     password: loginForm.value.password,
@@ -37,7 +36,7 @@ export class UserService {
         const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
         return this.http
-            .post(url, body, { headers: headers})
+            .post(LOGIN_URL, body, { headers: headers})
             .pipe(
                 map((response) => {
 
