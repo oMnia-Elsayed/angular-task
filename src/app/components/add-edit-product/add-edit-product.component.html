@@ -1,35 +1,35 @@
 
 <form class="add-edit" [formGroup]="addEditForm" *ngIf="addEditForm" novalidate>
 
-    <h3 i18n *ngIf="!isEdit"> Add Product </h3>
-    <h3 i18n *ngIf="isEdit"> Edit Product </h3>
+    <h3  *ngIf="!isEdit"> Add Product </h3>
+    <h3  *ngIf="isEdit"> Edit Product </h3>
 
     <div class="add-edit__field">
-        <input formControlName="title" type="text" class="add-edit__input" placeholder="Title Product" i18n>
+        <input formControlName="title" type="text" class="add-edit__input" placeholder="Title Product" >
     </div>
     <div class="add-edit__field">
-        <input formControlName="description" type="text" class="add-edit__input" placeholder="Description" i18n>
+        <input formControlName="description" type="text" class="add-edit__input" placeholder="Description" >
     </div>
     <div class="add-edit__field" *ngIf="categories?.length">
         <mat-form-field>
-            <mat-label i18n>Product Category</mat-label>
+            <mat-label >Product Category</mat-label>
             <mat-select formControlName="category">
-                <mat-option i18n *ngFor="let category of categories" [value]="category">
+                <mat-option  *ngFor="let category of categories" [value]="category">
                   {{category}}
                 </mat-option>
             </mat-select>
         </mat-form-field>
     </div>
     <div class="add-edit__field">
-        <input formControlName="image" type="text" class="add-edit__input" placeholder="Image Link" i18n>
+        <input formControlName="image" type="text" class="add-edit__input" placeholder="Image Link" >
     </div>
     <div class="add-edit__field">
-        <input formControlName="price" type="number" class="add-edit__input" placeholder="Product Price" i18n>
+        <input formControlName="price" type="number" class="add-edit__input" placeholder="Product Price" >
     </div>
     
     <div class="add-edit__submit">
-        <button mat-button [mat-dialog-close]="data" class="button" (click)="submit()" cdkFocusInitial i18n *ngIf="!isEdit">Add</button>
-        <button mat-button [mat-dialog-close]="data" class="button" (click)="submit()" cdkFocusInitial i18n *ngIf="isEdit">Edit</button>
-        <button mat-button class="mat-mdc-button-touch-target button" (click)="onNoClick()" i18n>Cancel</button>				
+        <button mat-button [mat-dialog-close]="data" class="button" (click)="submit()" cdkFocusInitial  *ngIf="!isEdit">Add</button>
+        <button mat-button [mat-dialog-close]="data" class="button" (click)="submit()" cdkFocusInitial  *ngIf="isEdit">Edit</button>
+        <button mat-button class="mat-mdc-button-touch-target button" (click)="onNoClick()" >Cancel</button>				
     </div>
 </form>

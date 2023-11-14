@@ -13,14 +13,6 @@
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
-      "i18n": {
-        "sourceLocale": "en-US",
-        "locales": {
-          "ar": {
-            "translation": "src/locale/messages.ar.xlf"
-          }
-        }
-      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -63,9 +55,6 @@
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
-            },
-            "ar": {
-              "localize": ["ar"]
             }
           },
           "defaultConfiguration": "production"
@@ -78,9 +67,6 @@
             },
             "development": {
               "browserTarget": "shopping-website:build:development"
-            },
-            "ar": {
-              "browserTarget": "shopping-website:build:ar"
             }
           },
           "defaultConfiguration": "development"
