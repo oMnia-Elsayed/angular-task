@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { TranslateModule } from '@ngx-translate/core';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { of } from 'rxjs';
 import { ProductService } from 'src/app/services/product.service';
@@ -44,7 +45,7 @@ describe('ProductsTableComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ToastrModule.forRoot()],
+      imports: [ToastrModule.forRoot(), TranslateModule.forRoot()],
       providers: [
         ToastrService,
         { provide: MatDialog, useClass: MockedMatDialog },

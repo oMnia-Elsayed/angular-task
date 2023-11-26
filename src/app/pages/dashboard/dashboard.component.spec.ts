@@ -5,6 +5,7 @@ import { DasboardComponent } from './dashboard.component';
 import { ProductService } from 'src/app/services/product.service';
 import { of } from 'rxjs';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('DasboardComponent', () => {
 
@@ -24,7 +25,7 @@ describe('DasboardComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [RouterTestingModule, ToastrModule.forRoot()],
+            imports: [RouterTestingModule, ToastrModule.forRoot(), TranslateModule.forRoot()],
             declarations: [
                 DasboardComponent,
             ],

@@ -7,6 +7,7 @@ import { FormBuilder } from '@angular/forms';
 import { ProductService } from 'src/app/services/product.service';
 import { of } from 'rxjs';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('AddEditProductComponent', () => {
   let component: AddEditProductComponent;
@@ -37,7 +38,7 @@ describe('AddEditProductComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [MatDialogModule, ToastrModule.forRoot()],
+      imports: [MatDialogModule, ToastrModule.forRoot(), TranslateModule.forRoot()],
       providers: [
         FormBuilder,
         ToastrService,

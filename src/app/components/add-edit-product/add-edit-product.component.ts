@@ -9,6 +9,7 @@ import { ProductService } from 'src/app/services/product.service';
 import { MatSelectModule } from '@angular/material/select';
 import { ProductModel } from 'src/app/models/product.model';
 import { ToastrService } from 'ngx-toastr';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-edit-product',
@@ -16,7 +17,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./add-edit-product.component.scss'],
   standalone: true,
   imports: [MatDialogModule, MatFormFieldModule, MatInputModule, FormsModule, 
-    MatButtonModule, ReactiveFormsModule, NgIf, NgFor, MatSelectModule],
+    MatButtonModule, ReactiveFormsModule, NgIf, NgFor, MatSelectModule, TranslateModule],
 })
 export class AddEditProductComponent  implements OnInit {
 

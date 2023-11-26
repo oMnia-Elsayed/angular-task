@@ -1,20 +1,20 @@
-
+<app-translation [className]="'primary'"></app-translation>
 <div class="container">
 	<div class="form" id="form">
 		<div class="form-container">
 			<form [formGroup]="loginForm" *ngIf="loginForm" (ngSubmit)="login()" novalidate>
-				<h1>Log in</h1>
-				<span>Use your account Username and password </span>
-				<input type="text" placeholder="Username" formControlName="username"/>
-				<input type="password" placeholder="Password" formControlName="password" />
-				<button>log In</button>
+				<h1>{{ "login.headline" | translate }}</h1>
+				<span>{{ "login.subHeadline" | translate }}</span>
+				<input type="text" placeholder="{{ 'login.username' | translate }}" formControlName="username" />
+				<input type="password" placeholder="{{ 'login.password' | translate }}" formControlName="password" />
+				<button>{{ "login.button" | translate }}</button>
 			</form>
 		</div>
 		<div class="form-overlay">
 			<div class="form-overlay-container">
 				<div class="form-overlay-panel form-overlay-right">
-					<h1>Hello, Friend!</h1>
-					<p>Enter your personal details and start journey with us</p>
+					<h1>{{ "login.greeting.headline" | translate }}</h1>
+					<p>{{ "login.greeting.body" | translate }}</p>
 				</div>
 			</div>
 		</div>

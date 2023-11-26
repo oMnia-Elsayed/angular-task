@@ -1,15 +1,15 @@
 <mat-card class="example-card">
     <mat-card-header>
         <mat-icon mat-card-avatar class="navbar-icon" aria-hidden="false" aria-label="Example add icon" fontIcon="home" ></mat-icon>
-        <mat-card-title class="example-card--title">{{ productItem.title || 'Product title' }}</mat-card-title>
-        <mat-card-subtitle>{{ productItem.category || 'Product Category' }}</mat-card-subtitle>
+        <mat-card-title class="example-card--title">{{ "productItem." + productItem.id + ".title" | translate }}</mat-card-title>
+        <mat-card-subtitle>{{ "category." + productItem.category | translate }}</mat-card-subtitle>
     </mat-card-header>
     <img mat-card-image class="example-card--img" src="{{productItem.image || ''}}" alt="Photo of a product">
     <mat-card-content>
-        <p class="example-card--desc">{{ productItem.description || 'Product Description' }} </p>
+        <p class="example-card--desc">{{ "productItem." + productItem.id + ".description" | translate }} </p>
         <div class="example-card--info">
-            <p><strong >Price: </strong>{{ productItem.price || 'Product Price' }}</p>
-            <p><strong >Rate: </strong>{{ productItem.rating?.rate || 0 }}</p>
+            <p><strong >{{ "productItem.price" | translate }}</strong>{{ productItem.price || 'Product Price' }}</p>
+            <p><strong >{{ "productItem.rate" | translate }}</strong>{{ productItem.rating?.rate || 0 }}</p>
         </div>
     </mat-card-content>
     <div>

@@ -9,13 +9,14 @@ import { InfoComponent } from '../info/info.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { AddEditProductComponent } from '../add-edit-product/add-edit-product.component';
 import { ToastrService } from 'ngx-toastr';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-products-table',
   templateUrl: './products-table.component.html',
   styleUrls: ['./products-table.component.scss'],
   standalone: true,
-  imports: [MatTableModule, MatPaginatorModule, MatIconModule, NgIf, InfoComponent, MatDialogModule, AddEditProductComponent],
+  imports: [MatTableModule, MatPaginatorModule, MatIconModule, NgIf, InfoComponent, MatDialogModule, AddEditProductComponent, TranslateModule],
 })
 export class ProductsTableComponent  implements OnInit, AfterViewInit {
 

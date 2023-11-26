@@ -1,5 +1,7 @@
 
-<app-navbar></app-navbar>
+<app-navbar>
+    <app-translation [className]="'secondary'"></app-translation>
+</app-navbar>
 <ngx-skeleton-loader *ngIf="!products?.length"  count="1" appearance="circle"></ngx-skeleton-loader>
 <div *ngIf="!isAdmin">
     <app-search *ngIf="products?.length" [products]="products" [categories]="categories" (filteredProducts)="getFilteredProducts($event)" ></app-search>

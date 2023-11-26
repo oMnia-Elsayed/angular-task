@@ -1,5 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA} from '@angular/core';
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
 import { ProductCardComponent } from './product-card.component';
 
 describe('ProductCardComponent', () => {
@@ -10,7 +11,7 @@ describe('ProductCardComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [],
+            imports: [TranslateModule.forRoot()],
             schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
             providers: [],
         });

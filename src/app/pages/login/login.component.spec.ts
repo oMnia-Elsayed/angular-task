@@ -7,6 +7,7 @@ import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
 import { of } from 'rxjs';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('LoginComponent', () => {
 
@@ -30,7 +31,7 @@ describe('LoginComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [RouterTestingModule, ToastrModule.forRoot()],
+            imports: [RouterTestingModule, ToastrModule.forRoot(), TranslateModule.forRoot()],
             declarations: [
                 LoginComponent,
             ],

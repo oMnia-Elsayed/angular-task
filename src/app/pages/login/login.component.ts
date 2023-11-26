@@ -21,7 +21,8 @@ export class LoginComponent {
    * @param router
    * @param toastr
    */
-  constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router, private toastr: ToastrService) {}
+  constructor(private formBuilder: FormBuilder, private userService: UserService,
+    private router: Router, private toastr: ToastrService) {}
 
   /**
    * ngOnInit

@@ -1,5 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA} from '@angular/core';
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { of } from 'rxjs';
 import { ProductService } from 'src/app/services/product.service';
@@ -21,7 +22,7 @@ describe('SearchComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [ToastrModule.forRoot()],
+            imports: [ToastrModule.forRoot(), TranslateModule.forRoot()],
             schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
             providers: [
                 ToastrService,

@@ -2,9 +2,10 @@
     <mat-toolbar color="primary">
         <mat-toolbar-row>
             <mat-icon class="navbar-icon" aria-hidden="false" aria-label="Example add icon" fontIcon="home" ></mat-icon>
-            <span >Shopping</span>
+            <span >{{ "navbar.title" | translate }}</span>
             <span class="navbar-example-spacer"></span>
-            <button mat-button (click)="logout()" > Logout </button>
+            <ng-content></ng-content>
+            <button mat-button (click)="logout()" > {{ "navbar.logout" | translate }} </button>
         </mat-toolbar-row>
     </mat-toolbar>
 </p>

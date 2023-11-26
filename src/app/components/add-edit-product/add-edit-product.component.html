@@ -1,8 +1,8 @@
 
 <form class="add-edit" [formGroup]="addEditForm" *ngIf="addEditForm" novalidate>
 
-    <h3  *ngIf="!isEdit"> Add Product </h3>
-    <h3  *ngIf="isEdit"> Edit Product </h3>
+    <h3  *ngIf="!isEdit">{{ "addEditProduct.addProduct" | translate }</h3>
+    <h3  *ngIf="isEdit"> {{ "addEditProduct.editProduct" | translate } </h3>
 
     <div class="add-edit__field">
         <input formControlName="title" type="text" class="add-edit__input" placeholder="Title Product" >

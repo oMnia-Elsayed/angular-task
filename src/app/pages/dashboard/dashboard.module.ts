@@ -10,6 +10,7 @@ import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
 import { ProductsTableComponent } from 'src/app/components/products-table/products-table.component';
 import { InfoComponent } from 'src/app/components/info/info.component';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { TranslationComponent } from 'src/app/components/translation/translation.component';
 
 @NgModule({
   declarations: [DasboardComponent],
@@ -23,6 +24,7 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     ProductsTableComponent,
     InfoComponent,
     NgxSkeletonLoaderModule.forRoot(),
+    TranslationComponent,
   ]
 })
 export class DashboardModule { }

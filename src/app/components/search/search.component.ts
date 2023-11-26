@@ -8,13 +8,14 @@ import { isEmpty, cloneDeep } from 'lodash';
 import { MatButtonModule } from '@angular/material/button';
 import { NgFor } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-search',
   templateUrl: 'search.component.html',
   styleUrls: ['search.component.scss'],
   standalone: true,
-  imports: [FormsModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule, MatButtonModule, NgFor]
+  imports: [FormsModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule, MatButtonModule, NgFor, TranslateModule]
 })
 export class SearchComponent implements OnInit {
 
